@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 
-class NotesUpload extends StatelessWidget {
+/// For uploading notes (by teacher)
+class NotesUpload extends StatefulWidget {
   const NotesUpload({Key? key}) : super(key: key);
 
   @override
+  _NotesUploadState createState() => _NotesUploadState();
+}
+
+class _NotesUploadState extends State<NotesUpload> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.teal,
+    return Scaffold(
+      body: Container(
+        color: Colors.blue,
+      ),
     );
   }
 }
