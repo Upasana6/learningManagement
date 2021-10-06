@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_management/View/Widgets/appbar_with_back_and_menu.dart';
 import 'package:learning_management/View/Widgets/bordered_container.dart';
 import 'package:learning_management/View/Widgets/text.dart';
 import 'package:learning_management/constants.dart';
@@ -14,7 +15,7 @@ class Classes extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppbarInClasses(size: size),
+            AppbarWithBackAndMenu(size: size),
             Row(
               children: [
                 Padding(
@@ -48,8 +49,8 @@ class Classes extends StatelessWidget {
             ),
 
             /// Classes by or taken
-            Container(
-              height: size.height * 0.75,
+            Expanded(
+              // height: size.height * 0.75,
               child: ListView.builder(
                 /// Number of classes
                 itemCount: 10,
@@ -72,45 +73,6 @@ class Classes extends StatelessWidget {
                   );
                 },
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class AppbarInClasses extends StatelessWidget {
-  const AppbarInClasses({
-    Key? key,
-    required this.size,
-  }) : super(key: key);
-
-  final Size size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: size.height * 0.1,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                // size: 32,
-              ),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.menu,
-
-                // size: 32,
-              ),
-              onPressed: () {},
             ),
           ],
         ),

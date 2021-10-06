@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learning_management/View/Notes/notes_upload.dart';
 import 'package:learning_management/View/Notes/pdf_viewer.dart';
+import 'package:learning_management/View/class_detail_for_teacher.dart';
 import 'package:learning_management/View/classes.dart';
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
 
       /// Splash Page will be called here
       // home: PdfViewer(),
-      home: Classes(),
+      home: ClassDetailForTeacher(),
     );
   }
 }
