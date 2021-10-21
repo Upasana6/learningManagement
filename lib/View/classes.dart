@@ -20,7 +20,7 @@ class Classes extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
-                  child: BigText(text: 'Classes'),
+                  child: VeryBigText(text: 'Classes'),
                 ),
                 SizedBox(
                   width: 20,

@@ -1,6 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:learning_management/constants.dart';
 
+class VeryBigText extends StatelessWidget {
+  VeryBigText({
+    this.text = '',
+    this.color,
+  });
+  final String text;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      this.text,
+      style: TextStyle(
+        color: this.color ?? AppColors.midnightBlue,
+        fontSize: 40,
+        // fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+}
+
 class BigText extends StatelessWidget {
   BigText({
     this.text = '',
@@ -15,7 +36,7 @@ class BigText extends StatelessWidget {
       this.text,
       style: TextStyle(
         color: this.color ?? AppColors.midnightBlue,
-        fontSize: 40,
+        fontSize: 30,
         // fontWeight: FontWeight.bold,
       ),
     );
