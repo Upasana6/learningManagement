@@ -23,6 +23,10 @@ class ExtendedAppbar extends StatelessWidget {
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(50),
         ),
+        border: Border.all(
+          color: AppColors.midnightBlue,
+          width: 3,
+        ),
       ),
       child: Column(
         children: [

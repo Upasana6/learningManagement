@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning_management/View/Notes/notes_upload.dart';
-import 'package:learning_management/View/Notes/pdf_viewer.dart';
-import 'package:learning_management/View/Quiz/details_of_assignment_to_upload.dart';
+import 'package:learning_management/View/NotesAndAssignments/details_of_assignment_to_upload.dart';
 import 'package:learning_management/View/class_detail_for_teacher.dart';
 import 'package:learning_management/View/classes.dart';
 

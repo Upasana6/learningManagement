@@ -32,7 +32,7 @@ class ClassDetailForTeacher extends StatelessWidget {
                         text: '10',
                         color: AppColors.white,
                       ),
-                      SmallText(
+                      SmallerText(
                         text: 'Students',
                         color: AppColors.white,
                       ),
@@ -45,7 +45,7 @@ class ClassDetailForTeacher extends StatelessWidget {
                         text: '10',
                         color: AppColors.white,
                       ),
-                      SmallText(
+                      SmallerText(
                         text: 'Assignments',
                         color: AppColors.white,
                       ),
@@ -58,7 +58,7 @@ class ClassDetailForTeacher extends StatelessWidget {
                         text: '10',
                         color: AppColors.white,
                       ),
-                      SmallText(
+                      SmallerText(
                         text: 'Tests',
                         color: AppColors.white,
                       ),

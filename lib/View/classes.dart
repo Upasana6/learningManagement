@@ -35,7 +35,7 @@ class Classes extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
-                      child: SmallText(
+                      child: SmallerText(
                         text: '+ New Class',
                       ),
                     ),

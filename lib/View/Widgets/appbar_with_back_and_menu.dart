@@ -22,6 +22,10 @@ class AppbarWithBackAndMenu extends StatelessWidget {
       height: size.height * 0.1,
       decoration: BoxDecoration(
         color: this.backgroundColor ?? Colors.white,
+        border: Border.all(
+          color: AppColors.midnightBlue,
+          width: 3,
+        ),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),

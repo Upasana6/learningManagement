@@ -47,18 +47,20 @@ class MediumText extends StatelessWidget {
   MediumText({
     this.text = '',
     this.color,
+    this.textAlign,
   });
   final String text;
-
+  final TextAlign? textAlign;
   final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       this.text,
+      textAlign: this.textAlign ?? TextAlign.start,
       style: TextStyle(
         color: this.color ?? AppColors.midnightBlue,
-        fontSize: 21,
+        fontSize: 20,
       ),
     );
   }
@@ -68,14 +70,36 @@ class SmallText extends StatelessWidget {
   SmallText({
     this.text = '',
     this.color,
+    this.textAlign,
   });
   final String text;
+  final TextAlign? textAlign;
   final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       this.text,
+      textAlign: this.textAlign ?? TextAlign.start,
+      style: TextStyle(
+        color: this.color ?? AppColors.midnightBlue,
+        fontSize: 15,
+      ),
+    );
+  }
+}
+
+class SmallerText extends StatelessWidget {
+  SmallerText({this.text = '', this.color, this.textAlign});
+  final String text;
+  final Color? color;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      this.text,
+      textAlign: this.textAlign ?? TextAlign.start,
       style: TextStyle(
         color: this.color ?? AppColors.wheatish,
         fontSize: 14,
