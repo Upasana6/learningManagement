@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 
 /// For viewing notes
 class PdfViewer extends StatefulWidget {
-  const PdfViewer({Key? key}) : super(key: key);
+  PdfViewer(this.pdfToOpen);
+  final File pdfToOpen;
 
   @override
   _PdfViewerState createState() => _PdfViewerState();
@@ -12,13 +15,13 @@ class PdfViewer extends StatefulWidget {
 class _PdfViewerState extends State<PdfViewer> {
   /// 0-> not tried opening, 1-> opened and -1-> cannot open
   int _isLoading = 0;
-
   PDFDocument _doc = PDFDocument();
 
   /// load PDF file i.e. for now notes
   void loadPdf() async {
     try {
-      _doc = await PDFDocument.fromAsset('assets/pdf/Synopsis.pdf');
+      // _doc = await PDFDocument.fromAsset('assets/pdf/Synopsis.pdf');
+      _doc = await PDFDocument.fromFile(widget.pdfToOpen);
       setState(() {
         _isLoading = 1;
       });

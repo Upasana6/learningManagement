@@ -1,13 +1,15 @@
 import 'dart:io';
 
+import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:learning_management/View/NotesAndAssignments/details_of_assignment_to_upload.dart';
+import 'package:learning_management/View/NotesAndAssignments/pdf_viewer.dart';
 import 'package:learning_management/View/Widgets/appbar_with_back_and_menu.dart';
 import 'package:learning_management/View/Widgets/extended_appbar.dart';
 import 'package:learning_management/View/Widgets/text.dart';
 import 'package:learning_management/constants.dart';
 
-class AssignmentShowingPage extends StatelessWidget {
+class AssignmentShowingPage extends StatefulWidget {
   AssignmentShowingPage({
     @required this.title,
     this.filesUploaded,
@@ -20,6 +22,46 @@ class AssignmentShowingPage extends StatelessWidget {
   final String? descrition;
   final String? marks;
   final DateTime? submissionDate;
+
+  @override
+  _AssignmentShowingPageState createState() => _AssignmentShowingPageState();
+}
+
+class _AssignmentShowingPageState extends State<AssignmentShowingPage> {
+  /// 0-> not tried opening, 1-> opened and -1-> cannot open, 2-> opening
+  int _isPdfLoading = 0;
+
+  PDFDocument _doc = PDFDocument();
+
+  /// load PDF file i.e. for now notes
+  void loadPdf(pdfToOpen) async {
+    try {
+      // _doc = await PDFDocument.fromAsset('assets/pdf/Synopsis.pdf');
+      // sleep(Duration(seconds: 2));
+      _doc = await PDFDocument.fromFile(pdfToOpen);
+      setState(() {
+        _isPdfLoading = 1;
+      });
+      navigateToViewer();
+    } catch (e) {
+      print(e);
+      setState(() {
+        _isPdfLoading = -1;
+      });
+    }
+  }
+
+  void navigateToViewer() {
+    _isPdfLoading = 0;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Viewer(
+          document: _doc,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +78,7 @@ class AssignmentShowingPage extends StatelessWidget {
             ),
             ExtendedAppbar(
               size: size,
-              title: this.title ?? '',
+              title: this.widget.title ?? '',
             ),
             Expanded(
               child: Padding(
@@ -45,15 +87,14 @@ class AssignmentShowingPage extends StatelessWidget {
                   child: Column(
                     children: [
                       SmallText(
-                        text:
-                            '${this.descrition} and ahd jahdj aiuia  qiwuidjak qiuw qwo qoio aa owkf aodj apod pp ahjsn escrition}',
+                        text: '${this.widget.descrition}',
                         color: AppColors.midnightBlue,
                         textAlign: TextAlign.justify,
                       ),
                       Align(
                         alignment: Alignment.bottomRight,
                         child: SmallText(
-                          text: 'Marks: ${this.marks ?? '__'}',
+                          text: 'Marks: ${this.widget.marks ?? '__'}',
                           textAlign: TextAlign.end,
                           color: AppColors.redish,
                         ),
@@ -67,25 +108,36 @@ class AssignmentShowingPage extends StatelessWidget {
                                   childAspectRatio: 3 / 2,
                                   crossAxisSpacing: 20,
                                   mainAxisSpacing: 20),
-                          itemCount: this.filesUploaded?.length,
+                          itemCount: this.widget.filesUploaded?.length,
                           itemBuilder: (context, int index) {
-                            return Container(
-                              height: size.width / 2 - 50,
-                              width: size.width / 2 - 50,
-                              color: AppColors.babyBlue,
-                              child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Container(
-                                  width: size.width,
-                                  color: AppColors.greyish?.withOpacity(0.7),
-                                  child: SmallText(
-                                    text: this
-                                        .filesUploaded![index]
-                                        .path
-                                        .split('/')
-                                        .last,
-                                    textAlign: TextAlign.center,
-                                    color: AppColors.wheatish,
+                            return InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _isPdfLoading = 2;
+                                });
+                                loadPdf(this.widget.filesUploaded![index]);
+                              },
+                              child: Container(
+                                height: size.width / 3 - 50,
+                                width: size.width / 2 - 50,
+                                color: AppColors.babyBlue,
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Container(
+                                    width: size.width,
+                                    color: AppColors.greyish?.withOpacity(0.7),
+                                    child: SmallText(
+                                      text: widget.filesUploaded!.isNotEmpty
+                                          ? this
+                                              .widget
+                                              .filesUploaded![index]
+                                              .path
+                                              .split('/')
+                                              .last
+                                          : 'Error getting file',
+                                      textAlign: TextAlign.center,
+                                      color: AppColors.wheatish,
+                                    ),
                                   ),
                                 ),
                               ),
