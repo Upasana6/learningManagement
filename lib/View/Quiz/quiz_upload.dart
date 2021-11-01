@@ -39,51 +39,53 @@ class _QuizUploadState extends State<QuizUpload> {
               size: size,
               title: 'Subject Title',
             ),
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(32.0),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      CustomTextField(
-                        textEditingController: this.titleController,
-                        labelText: 'Test Title',
-                      ),
-                      CustomTextField(
-                        textEditingController: this.marksController,
-                        labelText: 'Max Marks',
-                      ),
-                      dateSelection(size, context, 'Test Date'),
-                      CustomTextField(
-                        textEditingController: this.durationController,
-                        labelText: 'Test Duration (in min)',
-                        keyboardType: TextInputType.number,
-                      ),
-                      CustomTextField(
-                        textEditingController: noteController,
-                        labelText: 'Add notes ... ',
-                        minLines: 5,
-                      ),
-                      RoundedRectangleButton(
-                        onTap: () {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => AddQuestions(),
+            Flexible(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(32.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        CustomTextField(
+                          textEditingController: this.titleController,
+                          labelText: 'Test Title',
+                        ),
+                        CustomTextField(
+                          textEditingController: this.marksController,
+                          labelText: 'Max Marks',
+                        ),
+                        dateSelection(size, context, 'Test Date'),
+                        CustomTextField(
+                          textEditingController: this.durationController,
+                          labelText: 'Test Duration (in min)',
+                          keyboardType: TextInputType.number,
+                        ),
+                        CustomTextField(
+                          textEditingController: noteController,
+                          labelText: 'Add notes ... ',
+                          minLines: 5,
+                        ),
+                        RoundedRectangleButton(
+                          onTap: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => AddQuestions(),
+                              ),
+                            );
+                          },
+                          size: size,
+                          fillColor: AppColors.midnightBlue,
+                          borderColor: AppColors.midnightBlue,
+                          child: Center(
+                            child: MediumText(
+                              text: 'Add Questions',
+                              color: AppColors.white,
                             ),
-                          );
-                        },
-                        size: size,
-                        fillColor: AppColors.midnightBlue,
-                        borderColor: AppColors.midnightBlue,
-                        child: Center(
-                          child: MediumText(
-                            text: 'Add Questions',
-                            color: AppColors.white,
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
