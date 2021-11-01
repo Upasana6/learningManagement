@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learning_management/Controller/test_questions.dart';
+import 'package:learning_management/View/Quiz/test_questions_preview.dart';
 import 'package:learning_management/View/Widgets/appbar_with_back_and_menu.dart';
 import 'package:learning_management/View/Widgets/custom_text_field.dart';
 import 'package:learning_management/View/Widgets/extended_appbar.dart';
@@ -13,7 +14,7 @@ class AddQuestions extends StatefulWidget {
 }
 
 class _AddQuestionsState extends State<AddQuestions> {
-  QuestionList questions = QuestionList();
+  QuestionList questionList = QuestionList();
 
   TextEditingController questionController = TextEditingController();
   TextEditingController option1Controller = TextEditingController();
@@ -40,7 +41,7 @@ class _AddQuestionsState extends State<AddQuestions> {
             ExtendedAppbar(
               size: size,
               title:
-                  'Question Number ${this.questions.test.isEmpty ? 1 : this.questions.test.length + 1}',
+                  'Question Number ${this.questionList.test.isEmpty ? 1 : this.questionList.test.length + 1}',
             ),
             Flexible(
               flex: 1,
@@ -51,7 +52,7 @@ class _AddQuestionsState extends State<AddQuestions> {
                     children: [
                       CustomTextField(
                         textEditingController: this.timeController,
-                        labelText: 'Time (in min)',
+                        labelText: 'Time (in seconds)',
                         keyboardType: TextInputType.number,
                       ),
                       Row(
@@ -68,7 +69,8 @@ class _AddQuestionsState extends State<AddQuestions> {
                           Container(
                             width: size.width / 2.6,
                             child: CustomTextField(
-                              textEditingController: this.marksController,
+                              textEditingController:
+                                  this.incorrectMarksController,
                               labelText: 'Deduct Marks',
                               keyboardType: TextInputType.number,
                             ),
@@ -116,6 +118,7 @@ class _AddQuestionsState extends State<AddQuestions> {
                           Container(
                             width: size.width / 2.7,
                             child: RoundedRectangleButton(
+                              onTap: addQuestion,
                               size: size,
                               fillColor: AppColors.midnightBlue,
                               borderColor: AppColors.midnightBlue,
@@ -130,6 +133,15 @@ class _AddQuestionsState extends State<AddQuestions> {
                           Container(
                             width: size.width / 2.7,
                             child: RoundedRectangleButton(
+                              onTap: () {
+                                addQuestion();
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => TestQuestionsPreview(
+                                        questionList: this.questionList),
+                                  ),
+                                );
+                              },
                               size: size,
                               fillColor: AppColors.midnightBlue,
                               borderColor: AppColors.midnightBlue,
@@ -152,5 +164,19 @@ class _AddQuestionsState extends State<AddQuestions> {
         ),
       ),
     );
+  }
+
+  addQuestion() {
+    this.questionList.addNewQuestion(
+          this.questionController.text,
+          this.option1Controller.text,
+          this.option2Controller.text,
+          this.option3Controller.text,
+          this.option4Controller.text,
+          int.parse(this.answerController.text),
+          int.parse(this.marksController.text),
+          int.parse(this.incorrectMarksController.text),
+          int.parse(this.timeController.text),
+        );
   }
 }

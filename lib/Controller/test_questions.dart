@@ -4,7 +4,7 @@ class Question {
   int? _answer;
   int? _marks;
   int? _incorrectmarksDeduct;
-  int? _time; // in minute
+  int? _time; // in second
 
   Question(String ques, String opt1, String opt2, String opt3, String opt4,
       int ans, int marks, int marksDeduct, int time) {

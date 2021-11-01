@@ -10,17 +10,19 @@ class BorderedContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 65,
       decoration: BoxDecoration(
         border: Border.all(
           color: AppColors.midnightBlue,
           width: 3,
         ),
         borderRadius: BorderRadius.all(
-          Radius.circular(30),
+          Radius.circular(10),
         ),
       ),
-      child: this.child,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: this.child,
+      ),
     );
   }
 }
