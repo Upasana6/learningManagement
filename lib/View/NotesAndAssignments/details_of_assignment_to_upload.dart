@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:learning_management/View/NotesAndAssignments/assignment_showing_page.dart';
 import 'package:learning_management/View/Widgets/appbar_with_back_and_menu.dart';
+import 'package:learning_management/View/Widgets/custom_text_field.dart';
 import 'package:learning_management/View/Widgets/extended_appbar.dart';
+import 'package:learning_management/View/Widgets/rounded_rectangle_button.dart';
 import 'package:learning_management/View/Widgets/text.dart';
 import 'package:learning_management/constants.dart';
 import 'package:file_picker/file_picker.dart';
@@ -33,22 +35,20 @@ class _DetailsOfAssignmentToUploadState
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              AppbarWithBackAndMenu(
-                size: size,
-                buttonColor: AppColors.white,
-                backgroundColor: AppColors.midnightBlue,
-              ),
-              ExtendedAppbar(
-                size: size,
-                title: 'SPM IT 7th SEM',
-              ),
-              form(size, context),
-            ],
-          ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AppbarWithBackAndMenu(
+              size: size,
+              buttonColor: AppColors.white,
+              backgroundColor: AppColors.midnightBlue,
+            ),
+            ExtendedAppbar(
+              size: size,
+              title: 'SPM IT 7th SEM',
+            ),
+            SingleChildScrollView(child: form(size, context)),
+          ],
         ),
       ),
     );
@@ -223,113 +223,6 @@ class _DetailsOfAssignmentToUploadState
               )
             : Container(),
       ],
-    );
-  }
-}
-
-class RoundedRectangleButton extends StatelessWidget {
-  const RoundedRectangleButton({
-    Key? key,
-    required this.size,
-    this.onTap,
-    this.child,
-    this.fillColor,
-    this.borderColor,
-    this.radius,
-  }) : super(key: key);
-
-  final Size size;
-  final onTap;
-  final Widget? child;
-  final Color? fillColor;
-  final Color? borderColor;
-  final double? radius;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Container(
-        width: size.width,
-        decoration: BoxDecoration(
-          color: this.fillColor ?? AppColors.white,
-          border: Border.all(color: this.borderColor ?? AppColors.babyBlue),
-          borderRadius: BorderRadius.all(
-            Radius.circular(this.radius ?? 20),
-          ),
-        ),
-        child: InkWell(
-          onTap: this.onTap,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: this.child,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    this.labelText = '',
-    this.keyboardType,
-    this.borderColor,
-    this.textColor,
-    this.maxLines,
-    this.enabled = true,
-    this.minLines,
-    @required this.textEditingController,
-    this.validator,
-  });
-  final String labelText;
-  final TextInputType? keyboardType;
-  final Color? textColor;
-  final Color? borderColor;
-  final int? maxLines;
-  final bool enabled;
-  final int? minLines;
-  final TextEditingController? textEditingController;
-  final validator;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: TextFormField(
-        controller: this.textEditingController,
-        minLines: this.minLines ?? 1,
-        enabled: this.enabled,
-        keyboardType: this.keyboardType ?? TextInputType.text,
-        cursorColor: AppColors.babyBlue,
-        maxLines: maxLines,
-        decoration: InputDecoration(
-          alignLabelWithHint: true,
-          labelText: this.labelText,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(20),
-            ),
-            borderSide: BorderSide(
-              // color: AppColors.midnightBlue,
-              color: this.borderColor ?? Colors.black,
-              width: 1,
-            ),
-          ),
-          labelStyle: TextStyle(
-            color: this.textColor ?? AppColors.midnightBlue,
-            fontSize: 18,
-          ),
-        ),
-        style: TextStyle(
-          color: this.textColor ?? AppColors.midnightBlue,
-          fontSize: 18,
-        ),
-        validator: this.validator,
-        // onChanged: (value) {
-        //   // textEditingController?.text = value;
-        // },
-      ),
     );
   }
 }

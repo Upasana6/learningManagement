@@ -1,84 +1,82 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 
 /// For viewing notes
-class PdfViewer extends StatefulWidget {
-  PdfViewer(this.pdfToOpen);
-  final File pdfToOpen;
+// class PdfViewer extends StatefulWidget {
+//   PdfViewer(this.pdfToOpen);
+//   final File pdfToOpen;
 
-  @override
-  _PdfViewerState createState() => _PdfViewerState();
-}
+//   @override
+//   _PdfViewerState createState() => _PdfViewerState();
+// }
 
-class _PdfViewerState extends State<PdfViewer> {
-  /// 0-> not tried opening, 1-> opened and -1-> cannot open
-  int _isLoading = 0;
-  PDFDocument _doc = PDFDocument();
+// class _PdfViewerState extends State<PdfViewer> {
+//   /// 0-> not tried opening, 1-> opened and -1-> cannot open
+//   int _isLoading = 0;
+//   PDFDocument _doc = PDFDocument();
 
-  /// load PDF file i.e. for now notes
-  void loadPdf() async {
-    try {
-      // _doc = await PDFDocument.fromAsset('assets/pdf/Synopsis.pdf');
-      _doc = await PDFDocument.fromFile(widget.pdfToOpen);
-      setState(() {
-        _isLoading = 1;
-      });
-      navigateToViewer();
-    } catch (e) {
-      print(e);
-      setState(() {
-        _isLoading = -1;
-      });
-    }
-  }
+//   /// load PDF file i.e. for now notes
+//   void loadPdf() async {
+//     try {
+//       // _doc = await PDFDocument.fromAsset('assets/pdf/Synopsis.pdf');
+//       _doc = await PDFDocument.fromFile(widget.pdfToOpen);
+//       setState(() {
+//         _isLoading = 1;
+//       });
+//       navigateToViewer();
+//     } catch (e) {
+//       print(e);
+//       setState(() {
+//         _isLoading = -1;
+//       });
+//     }
+//   }
 
-  Widget navigateToViewer() {
-    _isLoading = 0;
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Viewer(
-          document: _doc,
-        ),
-      ),
-    );
-    return Container();
-  }
+//   Widget navigateToViewer() {
+//     _isLoading = 0;
+//     Navigator.push(
+//       context,
+//       MaterialPageRoute(
+//         builder: (context) => Viewer(
+//           document: _doc,
+//         ),
+//       ),
+//     );
+//     return Container();
+//   }
 
-  @override
-  void initState() {
-    loadPdf();
-    super.initState();
-  }
+//   @override
+//   void initState() {
+//     loadPdf();
+//     super.initState();
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.blue,
-        child: _isLoading == 0
-            ? Center(
-                // TODO loader instead of container
-                child: Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.red,
-                ),
-              )
-            // : _isLoading == 1
-            // ? navigateToViewer()
-            : Center(
-                // TODO alert dialogue box instead of Text
-                child: Text(
-                  'Cannot open this file!!',
-                ),
-              ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Container(
+//         color: Colors.blue,
+//         child: _isLoading == 0
+//             ? Center(
+//                 // TODO loader instead of container
+//                 child: Container(
+//                   height: 50,
+//                   width: 50,
+//                   color: Colors.red,
+//                 ),
+//               )
+//             // : _isLoading == 1
+//             // ? navigateToViewer()
+//             : Center(
+//                 // TODO alert dialogue box instead of Text
+//                 child: Text(
+//                   'Cannot open this file!!',
+//                 ),
+//               ),
+//       ),
+//     );
+//   }
+// }
 
 /// Shows pdf in new page
 class Viewer extends StatelessWidget {
