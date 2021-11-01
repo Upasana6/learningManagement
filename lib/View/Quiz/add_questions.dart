@@ -77,7 +77,7 @@ class _AddQuestionsState extends State<AddQuestions> {
             ExtendedAppbar(
               size: size,
               title:
-                  'Question Number ${widget.questionNumber != -1 ? widget.questionNumber : this.questionList!.test.isEmpty ? 1 : this.questionList!.test.length + 1}',
+                  'Question Number ${widget.questionNumber != -1 ? widget.questionNumber + 1 : this.questionList!.test.isEmpty ? 1 : this.questionList!.test.length + 1}',
             ),
             Flexible(
               flex: 1,

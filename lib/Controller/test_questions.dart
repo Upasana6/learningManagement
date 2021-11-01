@@ -83,7 +83,7 @@ class QuestionList {
       int marksDeduct,
       int time,
       int questionNumber) {
-    this.test[questionNumber - 1].modifyQuestion(
+    this.test[questionNumber].modifyQuestion(
         ques, opt1, opt2, opt3, opt4, ans, marks, marksDeduct, time);
   }
 }

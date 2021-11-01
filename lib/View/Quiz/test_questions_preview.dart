@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learning_management/Controller/test_questions.dart';
+import 'package:learning_management/View/Quiz/add_questions.dart';
 import 'package:learning_management/View/Widgets/appbar_with_back_and_menu.dart';
 import 'package:learning_management/View/Widgets/bordered_container.dart';
 import 'package:learning_management/View/Widgets/extended_appbar.dart';
@@ -27,6 +28,14 @@ class TestQuestionsPreview extends StatelessWidget {
               size: size,
               title: 'Question Preview',
             ),
+            Padding(
+              padding: const EdgeInsets.only(top: 4.0),
+              child: SmallText(
+                text:
+                    'Total Questions: ${this.questionList!.test.length.toString()}',
+                color: AppColors.redish,
+              ),
+            ),
             Flexible(
               child: Scrollbar(
                 isAlwaysShown: true,
@@ -42,6 +51,16 @@ class TestQuestionsPreview extends StatelessWidget {
                           : questionList!.test.length;
                       print('N: $n');
                       return InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => AddQuestions(
+                                preQuestionList: this.questionList,
+                                questionNumber: index,
+                              ),
+                            ),
+                          );
+                        },
                         child: TileDesign(
                           questionList: questionList,
                           n: n,
