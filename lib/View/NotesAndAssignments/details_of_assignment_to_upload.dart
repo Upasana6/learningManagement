@@ -47,7 +47,11 @@ class _DetailsOfAssignmentToUploadState
               size: size,
               title: 'SPM IT 7th SEM',
             ),
-            SingleChildScrollView(child: form(size, context)),
+            Flexible(
+              child: SingleChildScrollView(
+                child: form(size, context),
+              ),
+            ),
           ],
         ),
       ),

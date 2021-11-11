@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       /// Splash Page will be called here
       // home: PdfViewer(),
       // home: ClassDetailForTeacher(),
-      // home: DetailsOfAssignmentToUpload(),
-      home: QuizUpload(),
+      home: DetailsOfAssignmentToUpload(),
+      // home: QuizUpload(),
     );
   }
 }
