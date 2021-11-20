@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_management/Controller/test_questions.dart';
 import 'package:learning_management/View/Quiz/add_questions.dart';
 import 'package:learning_management/View/Widgets/appbar_with_back_and_menu.dart';
 import 'package:learning_management/View/Widgets/custom_text_field.dart';
@@ -47,6 +48,10 @@ class _QuizUploadState extends State<QuizUpload> {
                     key: _formKey,
                     child: Column(
                       children: [
+                        // TODO information box for the textField where required
+                        // as that for maxMarks as it can also be dynamically be filled
+                        // and testDuration can also be as the sum of all the individual questions
+                        // if left unfilled
                         CustomTextField(
                           textEditingController: this.titleController,
                           labelText: 'Test Title',
@@ -68,9 +73,23 @@ class _QuizUploadState extends State<QuizUpload> {
                         ),
                         RoundedRectangleButton(
                           onTap: () {
+                            print('Data: ${this.marksController.text}');
+                            QuestionList test = QuestionList(
+                              testTitle: this.titleController.text,
+                              maxMarks: int.parse(
+                                  this.marksController.text == ""
+                                      ? '0'
+                                      : this.marksController.text),
+                              testdate: this.testDate ?? DateTime.now(),
+                              testDuration: int.parse(
+                                  this.durationController.text == ""
+                                      ? '0'
+                                      : this.durationController.text),
+                              note: this.noteController.text,
+                            );
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (context) => AddQuestions(),
+                                builder: (context) => AddQuestions(test),
                               ),
                             );
                           },

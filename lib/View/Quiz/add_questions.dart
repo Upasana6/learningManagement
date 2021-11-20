@@ -11,7 +11,8 @@ import 'package:learning_management/constants.dart';
 class AddQuestions extends StatefulWidget {
   @override
   _AddQuestionsState createState() => _AddQuestionsState();
-  AddQuestions({this.questionNumber = -1, this.preQuestionList});
+  AddQuestions(this.test, {this.questionNumber = -1, this.preQuestionList});
+  final QuestionList test;
   final int questionNumber;
   final QuestionList? preQuestionList;
 }
@@ -88,7 +89,7 @@ class _AddQuestionsState extends State<AddQuestions> {
                     children: [
                       CustomTextField(
                         textEditingController: this.timeController,
-                        labelText: 'Time (in seconds)',
+                        labelText: 'Time (in minute)',
                         keyboardType: TextInputType.number,
                       ),
                       Row(
@@ -193,8 +194,8 @@ class _AddQuestionsState extends State<AddQuestions> {
                                     : modifyQuestion();
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                    builder: (context) => TestQuestionsPreview(
-                                        questionList: this.questionList),
+                                    builder: (context) =>
+                                        TestQuestionsPreview(this.widget.test),
                                   ),
                                 );
                               },
@@ -223,7 +224,7 @@ class _AddQuestionsState extends State<AddQuestions> {
   }
 
   void modifyQuestion() {
-    this.questionList?.modifyQuestion(
+    this.widget.test.modifyQuestion(
           this.questionController.text,
           this.option1Controller.text,
           this.option2Controller.text,
@@ -238,7 +239,7 @@ class _AddQuestionsState extends State<AddQuestions> {
   }
 
   void addQuestion() {
-    this.questionList!.addNewQuestion(
+    this.widget.test.addNewQuestion(
           this.questionController.text,
           this.option1Controller.text,
           this.option2Controller.text,

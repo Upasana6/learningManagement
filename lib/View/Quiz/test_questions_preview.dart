@@ -9,8 +9,8 @@ import 'package:learning_management/View/Widgets/text.dart';
 import 'package:learning_management/constants.dart';
 
 class TestQuestionsPreview extends StatelessWidget {
-  TestQuestionsPreview({@required this.questionList});
-  final QuestionList? questionList;
+  TestQuestionsPreview(this.testDetails);
+  final QuestionList testDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class TestQuestionsPreview extends StatelessWidget {
               padding: const EdgeInsets.only(top: 4.0),
               child: SmallText(
                 text:
-                    'Total Questions: ${this.questionList!.test.length.toString()}',
+                    'Total Questions: ${this.testDetails.test.length.toString()}',
                 color: AppColors.redish,
               ),
             ),
@@ -44,25 +44,25 @@ class TestQuestionsPreview extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 32.0, vertical: 16),
                   child: ListView.builder(
-                    itemCount: questionList!.test.length,
+                    itemCount: testDetails.test.length,
                     itemBuilder: (BuildContext context, int index) {
-                      int n = questionList!.test.isEmpty
+                      int n = testDetails.test.isEmpty
                           ? 0
-                          : questionList!.test.length;
+                          : testDetails.test.length;
                       print('N: $n');
                       return InkWell(
                         onTap: () {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
                               builder: (context) => AddQuestions(
-                                preQuestionList: this.questionList,
+                                this.testDetails,
                                 questionNumber: index,
                               ),
                             ),
                           );
                         },
                         child: TileDesign(
-                          questionList: questionList,
+                          questionList: testDetails,
                           n: n,
                           index: index,
                         ),
