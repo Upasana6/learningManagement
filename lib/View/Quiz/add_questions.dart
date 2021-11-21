@@ -11,14 +11,13 @@ import 'package:learning_management/constants.dart';
 class AddQuestions extends StatefulWidget {
   @override
   _AddQuestionsState createState() => _AddQuestionsState();
-  AddQuestions(this.test, {this.questionNumber = -1, this.preQuestionList});
+  AddQuestions(this.test, {this.questionNumber = -1});
   final QuestionList test;
   final int questionNumber;
-  final QuestionList? preQuestionList;
 }
 
 class _AddQuestionsState extends State<AddQuestions> {
-  QuestionList? questionList;
+  // QuestionList? questionList;
 
   TextEditingController questionController = TextEditingController();
   TextEditingController option1Controller = TextEditingController();
@@ -32,33 +31,26 @@ class _AddQuestionsState extends State<AddQuestions> {
 
   @override
   void initState() {
-    this.questionList = this.widget.preQuestionList ?? QuestionList();
-    if (this.widget.preQuestionList != null) {
+    // this.questionList = this.widget.test;
+    if (widget.questionNumber != -1) {
       this.questionController.text =
-          widget.preQuestionList?.test[widget.questionNumber].question ?? '';
+          widget.test.test[widget.questionNumber].question ?? '';
       this.option1Controller.text =
-          widget.preQuestionList?.test[widget.questionNumber].options![0] ?? '';
+          widget.test.test[widget.questionNumber].options?[0] ?? '';
       this.option2Controller.text =
-          widget.preQuestionList?.test[widget.questionNumber].options![1] ?? '';
+          widget.test.test[widget.questionNumber].options?[1] ?? '';
       this.option3Controller.text =
-          widget.preQuestionList?.test[widget.questionNumber].options![2] ?? '';
+          widget.test.test[widget.questionNumber].options?[2] ?? '';
       this.option4Controller.text =
-          widget.preQuestionList?.test[widget.questionNumber].options![3] ?? '';
-      this.answerController.text = widget
-              .preQuestionList?.test[widget.questionNumber].answer
-              .toString() ??
-          '';
-      this.marksController.text = widget
-              .preQuestionList?.test[widget.questionNumber].marks
-              .toString() ??
-          '';
-      this.incorrectMarksController.text = widget
-              .preQuestionList?.test[widget.questionNumber].marksDeduct
-              .toString() ??
-          '';
+          widget.test.test[widget.questionNumber].options?[3] ?? '';
+      this.answerController.text =
+          widget.test.test[widget.questionNumber].answer?.toString() ?? '';
+      this.marksController.text =
+          widget.test.test[widget.questionNumber].marks?.toString() ?? '';
+      this.incorrectMarksController.text =
+          widget.test.test[widget.questionNumber].marksDeduct?.toString() ?? '';
       this.timeController.text =
-          widget.preQuestionList?.test[widget.questionNumber].time.toString() ??
-              '';
+          widget.test.test[widget.questionNumber].time?.toString() ?? '';
     }
     super.initState();
   }
@@ -78,7 +70,7 @@ class _AddQuestionsState extends State<AddQuestions> {
             ExtendedAppbar(
               size: size,
               title:
-                  'Question Number ${widget.questionNumber != -1 ? widget.questionNumber + 1 : this.questionList!.test.isEmpty ? 1 : this.questionList!.test.length + 1}',
+                  'Question Number ${widget.questionNumber != -1 ? widget.questionNumber + 1 : this.widget.test.test.isEmpty ? 1 : this.widget.test.test.length + 1}',
             ),
             Flexible(
               flex: 1,
@@ -152,7 +144,7 @@ class _AddQuestionsState extends State<AddQuestions> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          widget.preQuestionList == null
+                          widget.questionNumber == -1
                               ? Container(
                                   width: size.width / 2.7,
                                   child: RoundedRectangleButton(
@@ -189,7 +181,7 @@ class _AddQuestionsState extends State<AddQuestions> {
                             width: size.width / 2.7,
                             child: RoundedRectangleButton(
                               onTap: () {
-                                widget.preQuestionList == null
+                                widget.questionNumber == -1
                                     ? addQuestion()
                                     : modifyQuestion();
                                 Navigator.of(context).pushReplacement(
