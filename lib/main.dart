@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_management/View/Attendence/attendence_uploading.dart';
 import 'package:learning_management/View/NotesAndAssignments/details_of_assignment_to_upload.dart';
 import 'package:learning_management/View/Quiz/quiz_upload.dart';
 import 'package:learning_management/View/class_detail_for_teacher.dart';
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
       // home: PdfViewer(),
       // home: ClassDetailForTeacher(),
       // home: DetailsOfAssignmentToUpload(),
-      home: QuizUpload(),
+      // home: QuizUpload(),
+      home: AttendenceUploading(),
     );
   }
 }
