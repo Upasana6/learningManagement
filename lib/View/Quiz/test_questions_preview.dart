@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learning_management/Controller/test_questions.dart';
 import 'package:learning_management/View/Quiz/add_questions.dart';
+import 'package:learning_management/View/Quiz/show_quiz.dart';
 import 'package:learning_management/View/Widgets/appbar_with_back_and_menu.dart';
 import 'package:learning_management/View/Widgets/bordered_container.dart';
 import 'package:learning_management/View/Widgets/extended_appbar.dart';
@@ -75,6 +76,13 @@ class TestQuestionsPreview extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 32.0, right: 32, bottom: 32),
               child: RoundedRectangleButton(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ShowQuiz(this.testDetails),
+                    ),
+                  );
+                },
                 size: size,
                 fillColor: AppColors.midnightBlue,
                 borderColor: AppColors.midnightBlue,
