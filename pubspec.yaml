@@ -29,7 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   advance_pdf_viewer: ^2.0.0
   cupertino_icons: ^1.0.2
-  
+  splashscreen: ^1.3.5
 
 dev_dependencies:
   flutter_test:
@@ -50,6 +50,7 @@ flutter:
   assets:
     - assets/pdf/LALR.pdf
     - assets/pdf/Synopsis.pdf
+    - assets/imp.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
