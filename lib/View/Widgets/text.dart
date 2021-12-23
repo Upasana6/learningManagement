@@ -83,7 +83,7 @@ class SmallText extends StatelessWidget {
       textAlign: this.textAlign ?? TextAlign.start,
       style: TextStyle(
         color: this.color ?? AppColors.midnightBlue,
-        fontSize: 15,
+        fontSize: 16,
       ),
     );
   }
