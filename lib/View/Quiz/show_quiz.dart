@@ -70,8 +70,8 @@ class ShowQuiz extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      // builder: (context) => TakeQuiz(this.testDetail),
-                      builder: (context) => TakeQuiz(),
+                      builder: (context) => TakeQuiz(this.testDetail),
+                      // builder: (context) => TakeQuiz(),
                     ),
                   );
                 },

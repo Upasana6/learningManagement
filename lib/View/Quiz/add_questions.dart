@@ -184,6 +184,11 @@ class _AddQuestionsState extends State<AddQuestions> {
                                 widget.questionNumber == -1
                                     ? addQuestion()
                                     : modifyQuestion();
+                                //TODO for testing purpose
+                                this.widget.test.test = questions;
+                                this.widget.test.maxMarks = 40;
+                                this.widget.test.testDuration = 2;
+
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                     builder: (context) =>
